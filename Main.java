@@ -15,7 +15,9 @@ public class Main {
                 System.out.println("err.getMessage(): "+err.getMessage());
             }
         }
-       
+      for(var i :input.getClass().getMethods()){
+        System.out.println(i);
+      }
 }
     
 }
