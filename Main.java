@@ -1,49 +1,34 @@
-import java.util.Scanner;
-import java.util.HashMap;
-
+import java.util.*;;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int t = scanner.nextInt();
-        scanner.nextLine();
-        HashMap<String, String>inputinfo = new HashMap<>();
+        scanner.nextLine(); // Consume newline left-over
 
         while (t-- > 0) {
-            int n = scanner.nextInt();
-            scanner.nextLine();
-            String s = scanner.nextLine();
-            // Your code goes here
-            if((inputinfo.get(n+"")==null)){
-                inputinfo.put(n+"", s); 
-            }else{
-                String new_n = n+"";
-                String new_t =t+"";
-                String newkey = new_n + new_t;
-               
-                inputinfo.put(newkey, s);
-            }
+            int n = scanner.nextInt(); // Read N but you don't actually use it directly
+            scanner.nextLine(); // Consume newline left-over
+            String s = scanner.nextLine(); // Read binary string S
+
+            System.out.println(encode(s)); // Process and print the encoded string
         }
-        
-        for(String i:inputinfo.keySet()){
-            String val = inputinfo.get(i);
-            System.out.println(EncodedOutput(val));
-        }
-        // System.out.println("Encoded o/p(10): "+ EncodedOutput(10+""));
     }
-    public static String EncodedOutput(String value){
-       
-        int times = value.length()/2;
-        String Final = "";
-        for(int i = 0; i<times; i++){
-            int start = i*2;
-            int end = start+2;
+
+    public static String encode(String value) {
+        StringBuilder finalEncoded = new StringBuilder(); // Use StringBuilder for efficiency
+        int times = value.length() / 2;
+
+        for (int i = 0; i < times; i++) {
+            int start = i * 2;
+            int end = start + 2;
             String sub = value.substring(start, end);
-            String encoded = enchodetwoString(sub);
-            Final += encoded;
+            finalEncoded.append(encodeTwoChars(sub));
         }
-        return Final;
+
+        return finalEncoded.toString();
     }
-    public static String enchodetwoString(String s){
+
+    public static String encodeTwoChars(String s) {
         switch (s) {
             case "00":
                 return "A";
@@ -54,10 +39,7 @@ public class Main {
             case "11":
                 return "G";
             default:
-                return " ";
+                return " "; // It shouldn't reach here if input is valid.
         }
-        
-
     }
-    
 }
