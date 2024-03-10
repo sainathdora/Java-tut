@@ -1,18 +1,21 @@
+import java.util.ArrayList;
 import java.util.Scanner;
+
 public class Main {
-
-
+    
     public static void main(String[] args) {
-        Animal animal = new Animal("Generic", "Huge", 120);
-        // doAnimal(animal, "slow");
-        Dog brownie = new Dog("corgie", "slow", 10);
-        brownie.bark();
-        doAnimal(brownie, "fast");
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        String[] input_arr = input.split(" ");
+        ArrayList <Integer> arr = new ArrayList<>();
+        for(var i:input_arr){
+            try{
+                arr.add(Integer.parseInt(i));
+            }catch(Exception err){
+                System.out.println("err.getMessage(): "+err.getMessage());
+            }
+        }
+       
 }
-    public static void doAnimal(Animal animal, String speed){
-        animal.Move(speed);
-        animal.MakeNoise();
-        System.out.println("------");
-        System.out.println(animal);
-    }
+    
 }
